@@ -1,7 +1,7 @@
 module.exports = {
   plugins: {
-    tailwindcss: {},
+    tailwindcss: {}/* ,
     'vue-cli-plugin-tailwind/purgecss': {},
-    autoprefixer: {}
+    autoprefixer: {} */
   }
 }
