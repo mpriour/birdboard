@@ -1,43 +1,44 @@
 <template>
-  <div class="hello">
+  <div class="grid-cols-3 grid-rows-2">
     <bird-fetch v-slot="{obs}" :notable="true" :max="100" :location="location">
-      <div class="flex">
+      <div class="grid-cols-3 flex justify-between items-start h-screen/2">
         <notable-summary :by-location="true" :obs="obs" @select="handleSelect"></notable-summary>
         <notable-summary :obs="obs" @select="handleSelect"></notable-summary>
         <notable-details :obs="obs" :id="selectedId" :byLocation="selectedLocation"></notable-details>
       </div>
     </bird-fetch>
     <bird-fetch v-slot="{obs}" :max="100" :location="location">
-      <recent-summary :count="50" :obs="obs"></recent-summary>
+      <recent-summary :count="50" :obs="obs" class="col-span-2 items-start"></recent-summary>
     </bird-fetch>
+    <div id="map"></div>
   </div>
 </template>
 
 <script>
-import BirdFetch from './BirdFetch.vue'
-import NotableSummary from './NotableSummary.vue'
-import RecentSummary from './RecentSummary.vue'
-import NotableDetails from './NotableDetails.vue'
+import BirdFetch from "./BirdFetch.vue";
+import NotableSummary from "./NotableSummary.vue";
+import RecentSummary from "./RecentSummary.vue";
+import NotableDetails from "./NotableDetails.vue";
 
 export default {
-  name: 'Dashboard',
+  name: "Dashboard",
   props: {
-    location: {type:String, default: 'TX'}
+    location: { type: String, default: "TX" }
   },
-  components: {BirdFetch, NotableSummary, RecentSummary, NotableDetails},
-  data(){
+  components: { BirdFetch, NotableSummary, RecentSummary, NotableDetails },
+  data() {
     return {
       selectedId: null,
       selectedLocation: false
-    }
+    };
   },
   methods: {
-    handleSelect(code, byLocation){
-      this.selectedId = code
-      this.selectedLocation = byLocation
+    handleSelect(code, byLocation) {
+      this.selectedId = code;
+      this.selectedLocation = byLocation;
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

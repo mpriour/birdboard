@@ -1,15 +1,18 @@
 <template>
-  <section>
-    <h3>Observation Details</h3>
-    <div>
-      <ul>
-        <li v-for="r in selected" :key="r.obsId">
-          <div>{{r.howMany}} {{r.comName}}</div>
-          <div>Sighted by: {{r.userDisplayName}}</div>
-          <div>On: {{formatDateTime(r.obsDt)}}</div>
-          <div>At: {{r.locName}}</div>
-        </li>
-      </ul>
+  <section class="rounded bg-white shadow-lg h-full text-lg px-8 mx-4 w-screen/4">
+    <h3 class="text-2xl">Observation Details</h3>
+    <div v-if="id" class="overflow-y-auto h-full">
+        <article v-for="r in selected" :key="r.obsId" class="bg-gray-200 rounded-sm my-4 cursor-pointer">
+          <div class="bg-black text-white flex justify-between border-bottom border-indigo-400 border-2 text-xs px-2">
+            <span>{{r.userDisplayName}}</span>
+            <span>{{formatDateTime(r.obsDt)}}</span>
+          </div>
+          <div class="text-green-800 text-lg">{{r.howMany}} {{r.comName}}</div>
+          <div class="bg-black text-xs text-white border-top border-indigo-400 border-2 text-left px-2">{{r.locName}}</div>
+        </article>
+    </div>
+    <div v-else class="h-full flex flex-column items-center">
+      <p class="text-xl text-gray-600 italic">Click on a location or a species to get more details</p>
     </div>
     </section>
 </template>

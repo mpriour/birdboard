@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="px-24 py-8">
     <Dashboard :location="state" />
   </div>
 </template>
