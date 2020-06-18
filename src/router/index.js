@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Birds from '../views/Birds.vue'
 
 Vue.use(VueRouter)
 
@@ -21,7 +22,7 @@ Vue.use(VueRouter)
   {
     path: '/:state',
     name: 'Dashboard',
-    component: Home,
+    component: Birds,
     props: true
   },
 ]

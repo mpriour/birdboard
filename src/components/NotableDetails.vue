@@ -1,6 +1,6 @@
 <template>
   <section class="rounded bg-white shadow-lg h-full text-lg px-8 mx-4 w-screen/4">
-    <h3 class="text-2xl">Observation Details</h3>
+    <h3 class="text-2xl">Notable Details</h3>
     <div v-if="id" class="overflow-y-auto subsection">
         <article v-for="r in selected" :key="r.obsId" @click="birdClicked(r)" class="bg-gray-200 rounded-sm my-4 cursor-pointer">
           <div class="bg-black text-white flex justify-between border-bottom border-indigo-400 border-2 text-xs px-2">
@@ -12,7 +12,7 @@
         </article>
     </div>
     <div v-else class="h-full flex items-center">
-      <p class="text-xl text-gray-600 italic">Click on a location or a species to get more details</p>
+      <p class="text-xl text-gray-600 italic">Click on a notable location or a species to get more details</p>
     </div>
     </section>
 </template>

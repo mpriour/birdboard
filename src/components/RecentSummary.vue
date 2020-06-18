@@ -6,7 +6,8 @@
         v-for="bird in topSpecies"
         :key="bird.code"
         @click="birdClicked(bird)"
-        class="rounded bg-blue-800 text-white text-sm m-px"
+        class="rounded text-white text-sm m-px hover:text-black cursor-pointer"
+        :class="randomBgColor()"
       >{{bird.comName}}</p>
     </div>
   </section>
@@ -25,11 +26,16 @@ export default {
       } else {
         return this.obs;
       }
-    }
+    },
   },
   methods: {
     birdClicked(record) {
       this.$emit("select", record);
+    },
+    randomBgColor(){
+      const colors = ['pink','purple','indigo','blue','teal','green','orange','red']
+      const ndx = Math.floor(Math.random() * colors.length)
+      return `bg-${colors[ndx]}-800 hover:bg-${colors[ndx]}-200`
     }
   }
 };

@@ -56,6 +56,7 @@ export default {
       request: this.request,
       get: this.get,
       post: this.post,
+      loading: this.loading,
       getNotable: this.getNotable,
       getRecent: this.getRecent,
       obs: this.obs

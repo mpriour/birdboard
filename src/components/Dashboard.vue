@@ -13,15 +13,21 @@
       </div>
     </bird-fetch>
     <div class="flex justify-between items-start mt-6">
-      <bird-fetch v-slot="{obs}" :max="50" :location="location">
-        <recent-summary
-          :count="48"
-          :obs="obs"
-          class="w-full h-screen/3 rounded bg-white shadow-lg mr-6"
-          @select="selectPoint"
+      <bird-fetch v-slot="{obs, loading}" :max="50" :location="location">
+        <div class="w-full h-screen/3 rounded bg-white shadow-lg mr-6"><recent-summary
+        v-if="!loading"
+        :count="48"
+        :obs="obs"
+        class="w-full h-full"
+        @select="selectPoint"
         ></recent-summary>
+        <div v-else class="flex flex-col justify-center items-center">
+          <h3 class="text-lg">...Loading most recently seen birds...</h3>
+          <img class="object-scale-down" src="flying_birds.gif" alt="Birds flap wings on screen to indicate resource is loading">
+        </div>
+        </div>
       </bird-fetch>
-      <div id="map" class="w-screen/2 h-screen/3 rounded shadow-2xl">
+      <div id="map" class="w-screen/2 h-screen/3 rounded shadow-2xl bg-white">
         <v-map v-if="selectedObs" :coords="centerPoint"></v-map>
         <div v-else class="h-full flex items-center">
           <p class="text-xl text-gray-600 italic">Click on a bird or observation detail to see map</p>
