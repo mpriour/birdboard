@@ -1,12 +1,13 @@
 <template>
   <section>
     <h3>Top {{count}} Recent Species</h3>
-    <div>
-      <ul>
-        <li v-for="bird in topSpecies" :key="bird.code">
-          {{bird.name}} : {{bird.count}}
-        </li>
-      </ul>
+    <div class="grid grid-cols-4 subsection">
+      <p
+        v-for="bird in topSpecies"
+        :key="bird.code"
+        @click="birdClicked(bird)"
+        class="rounded bg-blue-800 text-white text-sm m-px"
+      >{{bird.comName}}</p>
     </div>
   </section>
 </template>
@@ -15,39 +16,27 @@
 export default {
   props: {
     obs: { type: Array, default: () => [] },
-    count: {type:Number, default: 10}
+    count: { type: Number, default: 10 }
   },
   computed: {
-    species() {
-      //summarize the obs by species
-      const species = [];
-      const ssort = (a, b) =>
-        a.count > b.count ? -1 : a.count == b.count ? 0 : 1;
-      this.obs.forEach(ob => {
-        const ndx = species.findIndex(s => s.code == ob.speciesCode)
-        if(ndx > -1){
-          species[ndx].count += 1
-        } else {
-          species.push({
-            code: ob.speciesCode,
-            name: ob.comName,
-            sciName: ob.sciName,
-            count: 1
-          })
-        }
-      })
-      return species.sort(ssort)
-    },
-    topSpecies(){
-      if(this.species.length>=this.count){
-        return this.species.slice(0,this.count)
+    topSpecies() {
+      if (this.obs.length > this.count) {
+        return this.obs.slice(0, this.count);
       } else {
-        return this.species
+        return this.obs;
       }
+    }
+  },
+  methods: {
+    birdClicked(record) {
+      this.$emit("select", record);
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.subsection {
+  max-height: 85%;
+}
 </style>
