@@ -1,5 +1,7 @@
 # birdboard
 
+## OLD APIs DO NOT USE
+
 ## Project setup
 ```
 npm install
